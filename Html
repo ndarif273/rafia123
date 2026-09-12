@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Fresh product reviews, guides, technology, lifestyle and AI insights.">
+<title>FreshReview — Smart Reviews & AI</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#f7f9fc;
+  --card:#ffffff;
+  --text:#101828;
+  --muted:#667085;
+  --line:#e7ebf0;
+  --primary:#315bea;
+  --primary2:#6947e8;
+  --shadow:0 10px 35px rgba(16,24,40,.07);
+  --radius:22px;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input,textarea{
+  font:inherit;
+}
+
+/* HEADER */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  max-width:1180px;
+  margin:auto;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-.5px;
+}
+
+.logo span{
+  color:var(--primary);
+}
+
+.menu{
+  display:flex;
+  gap:25px;
+  align-items:center;
+}
+
+.menu a{
+  font-size:14px;
+  font-weight:600;
+  color:#475467;
+}
+
+.menu a:hover{
+  color:var(--primary);
+}
+
+/* HERO */
+
+.hero{
+  max-width:1180px;
+  margin:35px auto 25px;
+  padding:0 18px;
+}
+
+.heroBox{
+  border-radius:30px;
+  padding:55px 30px;
+  background:
+  radial-gradient(circle at 90% 10%,rgba(105,71,232,.22),transparent 30%),
+  radial-gradient(circle at 10% 90%,rgba(49,91,234,.18),transparent 30%),
+  #fff;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
+.heroBox h1{
+  max-width:750px;
+  margin:auto;
+  font-size:clamp(32px,6vw,58px);
+  line-height:1.05;
+  letter-spacing:-2px;
+}
+
+.heroBox h1 span{
+  color:var(--primary);
+}
+
+.heroBox p{
+  max-width:650px;
+  margin:18px auto 0;
+  color:var(--muted);
+  font-size:16px;
+}
+
+/* SEARCH */
+
+.searchArea{
+  max-width:1180px;
+  margin:20px auto 30px;
+  padding:0 18px;
+}
+
+.searchBox{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:12px;
+  display:flex;
+  gap:10px;
+  box-shadow:var(--shadow);
+}
+
+.searchBox input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:12px;
+  background:transparent;
+  color:var(--text);
+}
+
+.searchBox button{
+  border:0;
+  background:var(--primary);
+  color:#fff;
+  padding:0 20px;
+  border-radius:13px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* POSTS */
+
+.section{
+  max-width:1180px;
+  margin:35px auto;
+  padding:0 18px;
+}
+
+.sectionHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.sectionHead h2{
+  font-size:25px;
+  letter-spacing:-.5px;
+}
+
+.posts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.post{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  cursor:pointer;
+  transition:.25s;
+  box-shadow:0 5px 20px rgba(16,24,40,.035);
+}
+
+.post:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow);
+}
+
+.postImg{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  display:block;
+}
+
+.postContent{
+  padding:19px;
+}
+
+.category{
+  display:inline-block;
+  font-size:11px;
+  color:var(--primary);
+  background:#eef2ff;
+  padding:5px 9px;
+  border-radius:30px;
+  font-weight:700;
+  margin-bottom:9px;
+}
+
+.post h3{
+  font-size:19px;
+  line-height:1.3;
+  margin-bottom:8px;
+}
+
+.post p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.readMore{
+  display:block;
+  margin-top:15px;
+  color:var(--primary);
+  font-size:13px;
+  font-weight:700;
+}
+
+/* AI */
+
+.aiSection{
+  max-width:1180px;
+  margin:55px auto;
+  padding:0 18px;
+}
+
+.aiBox{
+  background:#101828;
+  color:white;
+  border-radius:28px;
+  padding:35px;
+  box-shadow:var(--shadow);
+}
+
+.aiTop{
+  margin-bottom:22px;
+}
+
+.aiTop h2{
+  font-size:30px;
+}
+
+.aiTop p{
+  color:#98a2b3;
+  margin-top:5px;
+}
+
+.aiInput{
+  width:100%;
+  min-height:130px;
+  resize:vertical;
+  border:1px solid #344054;
+  background:#1d2939;
+  color:#fff;
+  border-radius:17px;
+  padding:17px;
+  outline:0;
+}
+
+.aiInput:focus{
+  border-color:#6172f3;
+}
+
+.aiActions{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.askBtn,
+.copyBtn{
+  border:0;
+  border-radius:13px;
+  padding:12px 18px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.askBtn{
+  background:#fff;
+  color:#101828;
+}
+
+.copyBtn{
+  background:#344054;
+  color:#fff;
+}
+
+.aiResult{
+  display:none;
+  margin-top:20px;
+  background:#1d2939;
+  border:1px solid #344054;
+  border-radius:17px;
+  padding:20px;
+  white-space:pre-wrap;
+}
+
+/* ARTICLE */
+
+.articlePage{
+  display:none;
+  max-width:900px;
+  margin:35px auto;
+  padding:0 18px;
+}
+
+.articleBox{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.articleImage{
+  width:100%;
+  height:430px;
+  object-fit:cover;
+}
+
+.articleContent{
+  padding:35px;
+}
+
+.backBtn{
+  display:inline-block;
+  border:0;
+  background:#eef2f6;
+  color:#344054;
+  padding:9px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  margin-bottom:22px;
+}
+
+.articleContent h1{
+  font-size:clamp(30px,5vw,48px);
+  line-height:1.1;
+  letter-spacing:-1.5px;
+  margin-bottom:15px;
+}
+
+.articleText{
+  color:#475467;
+  font-size:17px;
+}
+
+.articleText p{
+  margin:20px 0;
+}
+
+.articleText h2{
+  color:#101828;
+  margin-top:30px;
+  margin-bottom:10px;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:60px;
+  background:#101828;
+  color:#98a2b3;
+  padding:35px 18px;
+  text-align:center;
+}
+
+footer strong{
+  color:#fff;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+  .posts{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .menu{
+    display:none;
+  }
+}
+
+@media(max-width:600px){
+  .nav{
+    height:62px;
+  }
+
+  .heroBox{
+    padding:40px 20px;
+  }
+
+  .posts{
+    grid-template-columns:1fr;
+  }
+
+  .postImg{
+    height:220px;
+  }
+
+  .aiBox{
+    padding:24px 18px;
+  }
+
+  .articleImage{
+    height:250px;
+  }
+
+  .articleContent{
+    padding:23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <nav class="nav">
+    <a href="#" class="logo" onclick="showHome()">Fresh<span>Review</span></a>
+
+    <div class="menu">
+      <a href="#" onclick="showHome()">Home</a>
+      <a href="#posts">Reviews</a>
+      <a href="#ai">Ask AI</a>
+    </div>
+  </nav>
+</header>
+
+
+<!-- HOME -->
+
+<main id="homePage">
+
+<section class="hero">
+  <div class="heroBox">
+    <h1>Discover. Compare. <span>Choose Better.</span></h1>
+    <p>
+      Fresh reviews, useful guides and smart AI answers
+      to help you make better decisions.
+    </p>
+  </div>
+</section>
+
+
+<section class="searchArea">
+  <div class="searchBox">
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Search reviews..."
+      oninput="searchPosts()"
+    >
+    <button onclick="searchPosts()">Search</button>
+  </div>
+</section>
+
+
+<section class="section" id="posts">
+
+  <div class="sectionHead">
+    <h2>Latest Reviews</h2>
+  </div>
+
+  <div class="posts" id="postGrid"></div>
+
+</section>
+
+
+<section class="aiSection" id="ai">
+
+  <div class="aiBox">
+
+    <div class="aiTop">
+      <h2>Ask AI</h2>
+      <p>Have a question? Ask our AI assistant.</p>
+    </div>
+
+    <textarea
+      id="aiQuestion"
+      class="aiInput"
+      placeholder="Type your question here..."
+    ></textarea>
+
+    <div class="aiActions">
+      <button class="askBtn" onclick="askAI()">
+        Ask AI
+      </button>
+
+      <button class="copyBtn" onclick="copyAnswer()">
+        Copy
+      </button>
+    </div>
+
+    <div id="aiResult" class="aiResult"></div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- ARTICLE PAGE -->
+
+<section class="articlePage" id="articlePage">
+
+  <div class="articleBox">
+
+    <img id="articleImage" class="articleImage">
+
+    <div class="articleContent">
+
+      <button class="backBtn" onclick="showHome()">
+        ← Back to Home
+      </button>
+
+      <div id="articleCategory" class="category"></div>
+
+      <h1 id="articleTitle"></h1>
+
+      <div id="articleText" class="articleText"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+  <strong>FreshReview</strong>
+  <br>
+  Smart reviews • Useful guides • AI answers
+</footer>
+
+
+<script>
+
+/* =========================
+   30 POSTS
+========================= */
+
+const posts = [
+
+{
+id:1,
+category:"Technology",
+title:"Best Smartphones for Everyday Use",
+image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=80",
+description:"A simple guide to choosing a smartphone for everyday tasks.",
+text:`
+<h2>Choosing the Right Smartphone</h2>
+<p>A good smartphone should provide a balance between performance, battery life, camera quality and software experience.</p>
+<p>Before buying a phone, think about what you actually need instead of simply choosing the most expensive model.</p>
+<h2>What Should You Check?</h2>
+<p>Check the processor, RAM, display, battery capacity, camera and software update support.</p>
+`
+},
+
+{
+id:2,
+category:"Technology",
+title:"How to Choose a Laptop",
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1000&q=80",
+description:"Important things to consider before buying a new laptop.",
+text:`
+<h2>Buying a Laptop</h2>
+<p>Start by deciding whether you need a laptop for school, office work, gaming, editing or general browsing.</p>
+<p>Battery life, display quality, processor performance and storage are important factors.</p>
+`
+},
+
+{
+id:3,
+category:"AI",
+title:"How Artificial Intelligence Is Changing Everyday Life",
+image:"https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=80",
+description:"Explore how AI is becoming part of everyday technology.",
+text:`
+<h2>AI Everywhere</h2>
+<p>Artificial intelligence is increasingly being used in search, writing, image generation, customer service and productivity tools.</p>
+<p>The most useful AI systems are those that save time and make complicated tasks easier.</p>
+`
+},
+
+{
+id:4,
+category:"Home",
+title:"Simple Ideas for a Modern Home",
+image:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80",
+description:"Clean and practical ideas for a comfortable home.",
+text:`
+<h2>Modern Home Design</h2>
+<p>A modern home does not need expensive decoration. Good lighting, simple furniture and organized spaces can make a huge difference.</p>
+`
+},
+
+{
+id:5,
+category:"Lifestyle",
+title:"How to Build Better Daily Habits",
+image:"https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1000&q=80",
+description:"Small habits can make your daily routine more productive.",
+text:`
+<h2>Better Habits</h2>
+<p>Start with small habits that are easy to repeat. Consistency is usually more important than trying to change everything at once.</p>
+`
+},
+
+{
+id:6,
+category:"Technology",
+title:"Best Accessories for Your Phone",
+image:"https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=1000&q=80",
+description:"Useful accessories that can improve your smartphone experience.",
+text:`<h2>Useful Phone Accessories</h2><p>Cases, chargers, power banks and stands can make everyday smartphone use easier.</p>`
+},
+
+{
+id:7,
+category:"Gaming",
+title:"What Makes a Gaming Device Good?",
+image:"https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1000&q=80",
+description:"The important hardware features gamers should understand.",
+text:`<h2>Gaming Performance</h2><p>Performance depends on the processor, graphics hardware, cooling and display.</p>`
+},
+
+{
+id:8,
+category:"Health",
+title:"Simple Ways to Stay Active",
+image:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80",
+description:"Simple lifestyle ideas for staying active.",
+text:`<h2>Stay Active</h2><p>Regular movement, walking and simple exercises can help support an active lifestyle.</p>`
+},
+
+{
+id:9,
+category:"Travel",
+title:"How to Plan a Better Trip",
+image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80",
+description:"A practical approach to planning your next trip.",
+text:`<h2>Trip Planning</h2><p>Research transportation, accommodation, local rules and important expenses before travelling.</p>`
+},
+
+{
+id:10,
+category:"Finance",
+title:"Smart Ways to Manage Your Budget",
+image:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1000&q=80",
+description:"Simple principles for managing personal expenses.",
+text:`<h2>Budget Basics</h2><p>Track income and expenses and create a realistic spending plan.</p>`
+},
+
+{
+id:11,
+category:"Technology",
+title:"Understanding Cloud Storage",
+image:"https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80",
+description:"What cloud storage is and why people use it.",
+text:`<h2>Cloud Storage</h2><p>Cloud storage allows files to be stored on remote servers and accessed through the internet.</p>`
+},
+
+{
+id:12,
+category:"AI",
+title:"AI Tools That Can Save Time",
+image:"https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1000&q=80",
+description:"Ways AI tools can improve productivity.",
+text:`<h2>AI Productivity</h2><p>AI can help with brainstorming, summarizing, research and many repetitive tasks.</p>`
+},
+
+{
+id:13,
+category:"Home",
+title:"How to Create a Better Workspace",
+image:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80",
+description:"Create a comfortable and productive workspace.",
+text:`<h2>Workspace Design</h2><p>A comfortable chair, good lighting and an organized desk can improve the work environment.</p>`
+},
+
+{
+id:14,
+category:"Photography",
+title:"Beginner Photography Tips",
+image:"https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=1000&q=80",
+description:"Simple photography ideas for beginners.",
+text:`<h2>Photography Basics</h2><p>Pay attention to lighting, composition and focus. Good photographs do not always require expensive equipment.</p>`
+},
+
+{
+id:15,
+category:"Education",
+title:"How to Learn Something Faster",
+image:"https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1000&q=80",
+description:"Practical learning techniques.",
+text:`<h2>Better Learning</h2><p>Active recall, practice and regular revision can make learning more effective.</p>`
+},
+
+{
+id:16,
+category:"Business",
+title:"How Small Websites Can Grow",
+image:"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80",
+description:"Basic ideas for growing a website.",
+text:`<h2>Website Growth</h2><p>Quality content, search visibility, good design and a strong user experience are important for website growth.</p>`
+},
+
+{
+id:17,
+category:"Technology",
+title:"Why Website Speed Matters",
+image:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80",
+description:"Page speed can affect user experience and search performance.",
+text:`<h2>Website Speed</h2><p>Fast websites provide a better experience, especially for users on mobile networks.</p>`
+},
+
+{
+id:18,
+category:"Lifestyle",
+title:"Creating a Minimal Digital Life",
+image:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80",
+description:"Reduce unnecessary digital distractions.",
+text:`<h2>Digital Minimalism</h2><p>Organizing apps, notifications and digital files can make technology easier to manage.</p>`
+},
+
+{
+id:19,
+category:"Travel",
+title:"Things to Check Before Booking a Hotel",
+image:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80",
+description:"Important hotel booking considerations.",
+text:`<h2>Hotel Checklist</h2><p>Check location, reviews, cancellation policy, facilities and the final price.</p>`
+},
+
+{
+id:20,
+category:"Food",
+title:"How to Build a Simple Kitchen",
+image:"https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1000&q=80",
+description:"Useful kitchen organization ideas.",
+text:`<h2>Kitchen Organization</h2><p>Keep frequently used items easy to access and organize storage according to how often things are used.</p>`
+},
+
+{
+id:21,
+category:"Technology",
+title:"How to Protect Your Online Accounts",
+image:"https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1000&q=80",
+description:"Basic online account security practices.",
+text:`<h2>Account Security</h2><p>Use strong unique passwords, two-factor authentication and avoid suspicious links.</p>`
+},
+
+{
+id:22,
+category:"AI",
+title:"What Is Generative AI?",
+image:"https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=1000&q=80",
+description:"A beginner-friendly explanation of generative AI.",
+text:`<h2>Generative AI</h2><p>Generative AI systems can create text, images, audio and other content from user instructions.</p>`
+},
+
+{
+id:23,
+category:"Business",
+title:"Why Good Branding Matters",
+image:"https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80",
+description:"The importance of a recognizable brand.",
+text:`<h2>Branding</h2><p>A consistent visual identity can help a website or business become easier to recognize.</p>`
+},
+
+{
+id:24,
+category:"Home",
+title:"How Lighting Changes a Room",
+image:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80",
+description:"Use lighting to improve the atmosphere of a room.",
+text:`<h2>Lighting</h2><p>Layered lighting can create different moods and make spaces feel more comfortable.</p>`
+},
+
+{
+id:25,
+category:"Technology",
+title:"Understanding Smartphone Battery Life",
+image:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1000&q=80",
+description:"Why phone batteries lose capacity over time.",
+text:`<h2>Battery Health</h2><p>Battery capacity naturally decreases with usage and charging cycles.</p>`
+},
+
+{
+id:26,
+category:"Education",
+title:"How to Research Information Online",
+image:"https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1000&q=80",
+description:"Better ways to evaluate online information.",
+text:`<h2>Online Research</h2><p>Compare multiple trustworthy sources and check dates before relying on information.</p>`
+},
+
+{
+id:27,
+category:"Photography",
+title:"Smartphone Photography Tricks",
+image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1000&q=80",
+description:"Make better photos using your phone.",
+text:`<h2>Phone Photography</h2><p>Clean the lens, use natural light and experiment with composition.</p>`
+},
+
+{
+id:28,
+category:"Lifestyle",
+title:"How to Organize Your Digital Files",
+image:"https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=80",
+description:"Keep documents and files organized.",
+text:`<h2>File Organization</h2><p>Use clear folders and consistent names so files can be found quickly.</p>`
+},
+
+{
+id:29,
+category:"Technology",
+title:"How Search Engines Find Websites",
+image:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+description:"A simple explanation of search engine crawling.",
+text:`<h2>Search Engines</h2><p>Search engines discover pages through crawling, process their content and use ranking systems to determine results.</p>`
+},
+
+{
+id:30,
+category:"AI",
+title:"The Future of AI and the Internet",
+image:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1000&q=80",
+description:"How AI could change the way people use websites.",
+text:`<h2>AI and the Web</h2><p>AI may increasingly help people search, compare information, create content and interact with online services.</p>`
+}
+
+];
+
+
+/* =========================
+   SHOW POSTS
+========================= */
+
+function renderPosts(list=posts){
+
+  const grid=document.getElementById("postGrid");
+
+  grid.innerHTML="";
+
+  i
